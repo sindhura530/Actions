@@ -1,4 +1,4 @@
-name: CI and CD pipeline
+name: CI and CD Pipeline
 on:
   push: 
      branches: [feature, develop]
