@@ -10,12 +10,12 @@ jobs:
      
   check:
      needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
+     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java'))"
      uses: sindhura530/github-workflows/.github/workflows/maven.yml@feature  
         
   check1:
     needs: inputs
-    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 1.8)"
+    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'node'))"
     uses: sindhura530/github-workflows/.github/workflows/npm.yml@feature
     with:
       image_name: ubuntu
