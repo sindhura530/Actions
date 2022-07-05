@@ -1,4 +1,4 @@
-name: npm
+name: Node.js CI
 
 on:
   workflow_call:
@@ -22,7 +22,7 @@ jobs:
         
     steps:
       - uses: actions/checkout@v3
-        #if: matrix.node-version == '10.x'
+    
       - name: pull the Docker image
         run: docker pull ${{ inputs.image_name }}
         
