@@ -1,31 +1,7 @@
-FROM node
-LABEL authors="Yann Mulonda"
-# update dependencies and install curl
-RUN apt-get update && apt-get install -y \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-# Create app directory
-WORKDIR /app
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-# COPY package*.json ./ \
-#     ./source ./
+FROM ubuntu:20.04
 
-# This will copy everything from the source path 
-# --more of a convenience when testing locally.
-COPY . .
-# update each dependency in package.json to the latest version
-RUN npm install -g npm-check-updates \
-    ncu -u \
-    npm install \
-    npm install express \
-    npm install babel-cli \
-    npm install babel-preset \
-    npm install babel-preset-env
-# If you are building your code for production
-RUN npm ci --only=production
-# Bundle app source
-COPY . /app
-EXPOSE 3000
-CMD [ "babel-node", "app.js" ]
+# Install Node.js 16, npm 8 and Curl
+RUN apt-get update -y && apt install -y curl git && \
+    curl -SL https://deb.nodesource.com/setup_16.x h| bash - && \
+    apt-get -y update && apt-get install -y nodejs && \
+    curl -L https://www.npmjs.com/install.sh | sh
