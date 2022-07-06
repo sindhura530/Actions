@@ -1,7 +1,7 @@
-name: CI and CD pipeline
+name: CI and CD Pipeline
 on:
-  workflow_dispatch:
-  
+  push:
+    branches: [feature, develop]
   
 jobs:
   inputs:
@@ -91,7 +91,7 @@ jobs:
         with:
           branch: "develop"
           base: feature
-          title: "auto PR from feature to develop"
+          title: "auto PR from feature into develop"
           committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
           author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
           body:
@@ -112,29 +112,20 @@ jobs:
              echo " **************************************** "
              echo " stage deployment Finished: SUCCESS"
              echo " **************************************** "
-      - name: checking out code
-        uses: actions/checkout@v2
-        
-      - name: extract git commit data
-        uses: rlespinasse/git-commit-data-action@v1.x
+      
+      - uses: actions/checkout@v2
+        name: checkout
 
-      - name: Update author information
-        run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
-     
-
-      - name: Raise PR 
-        uses: peter-evans/create-pull-request@v4
+      - uses: repo-sync/pull-request@v2
+        name: pull-request from develop to main
         with:
-          branch: "main"
-          base: develop
-          title: "Auto PR from develop to main"
-          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
-          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
-          body:
-            PR creation
-          token: ${{ secrets.GITHUB_TOKEN }}
-          delete-branch: true
-          
+          destination_branch: "main"
+          pr_title: "auto PR from ${{ github.ref }} into main"
+          pr_body: " Automated PR*"
+          pr_reviewer: "sindhu"
+          pr_draft: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+           
   Deploy_PROD:
     if: ${{ always() && github.event.ref == 'refs/heads/main' }}
     needs: [ChangeRequest_Validation]
