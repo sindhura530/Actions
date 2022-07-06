@@ -1,0 +1,17 @@
+name: container
+on:
+  push:
+    branches: [develop]
+
+jobs:
+   job1:
+      runs-on: ubuntu-latest
+      container: 
+          image: ubuntu
+      steps:
+          run: |
+            echo This job does specify a container.
+            echo It runs in the container instead of the VM.
+            apt-get update
+            apt-get install curl -y
+        
