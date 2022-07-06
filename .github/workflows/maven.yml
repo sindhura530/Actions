@@ -22,11 +22,13 @@ jobs:
       run:  echo "mvn test"
     - name: Package with maven
       run:  echo "mvn package"
+      
     - run: |
            mkdir artifact
            cd artifact
-           echo ' hi ' > sindhu.html
+           echo ' output ' > target.jar
            cd .. 
+           target/*.jar artifact
     - uses: actions/upload-artifact@v2
       with:
        name: Package
