@@ -1,50 +1,69 @@
-name: Node.js CI
+name: nodejs
 
 on:
+ 
   workflow_call:
-    inputs:
-      image_name:
-        required: true
-        type: string
-        
-    secrets:
-      registry_username:
-        required: true
-      registry_password:
-        required: true
+  
 jobs:
-  build:
+ 
+  build_test:
+
     runs-on: ubuntu-latest
-    
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [14.x]
         
     steps:
-      - uses: actions/checkout@v3
-    
-      - name: pull the Docker image
-        run: docker pull ${{ inputs.image_name }}
-        
-      - name: docker run
-        run: |
-           docker container run ${{ inputs.image_name }}
-           
-      - name: Install dependencies
-        run: echo "npm run build"
-      - name: Run test
-        run: echo "npm run test"
-        
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v1
+      - uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@master
         with:
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: login
-        run: echo "login success"
-        
-      - name: tag
-        run:  docker tag ${{ inputs.image_name }} sindhu530/${{ inputs.image_name }}:latest
-        
-      - name: push
-        run: docker push sindhu530/${{ inputs.image_name }}:latest
+          node-version: ${{ matrix.node-version }}
+
+      # install applicaion dependencies
+      - name: Install dependencies
+        run: |
+          echo "npm install"
+          echo "npm ci" 
+      # build and test the apps     
+      - name: build
+        run: |
+          echo "npm run build"
+          echo "npm run test"
+          
+  push_to_Docker_Hub:
+     
+      runs-on: ubuntu-latest
+      needs: [build_test]
+
+      steps:
+        - name: checkout repo
+          uses: actions/checkout@v2
+
+        - name: Set up QEMU
+          uses: docker/setup-qemu-action@v1
+      
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v1
+
+        - name: Login to DockerHub
+          uses: docker/login-action@v1
+          with:
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+      
+        - name: Build and push
+          uses: docker/build-push-action@v2
+          with:
+            context: ./
+            file: ./Dockerfile
+            push: true
+            tags: ${{ secrets.REGISTRY_USERNAME }}/nodejs:16
+          
+        - name: Run the image in a container
+          uses: addnab/docker-run-action@v3
+          with:
+            image: ${{ secrets.REGISTRY_USERNAME }}/nodejs:16
+          
+          
