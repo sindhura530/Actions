@@ -19,6 +19,8 @@ jobs:
     needs: inputs
     if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'node')"
     uses: sindhura530/github-workflows/.github/workflows/npm.yml@feature
+    with:
+      image_name: ubuntu
        
 
   Code-Quality:
