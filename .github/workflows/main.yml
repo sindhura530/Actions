@@ -21,6 +21,9 @@ jobs:
     uses: sindhura530/github-workflows/.github/workflows/npm.yml@feature
     with:
       image_name: ubuntu
+    secrets:
+      registry_username: ${{secrets.REGISTRY_USERNAME}}
+      registry_password: ${{secrets.REGISTRY_PASSWORD}}
        
 
   Code-Quality:
