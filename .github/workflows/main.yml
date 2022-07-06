@@ -1,9 +1,6 @@
 name: CI and CD pipeline
 on:
-  push: 
-     branches: [feature, develop]
-  pull_request: 
-     branches: [feature, develop]
+  workflow_dispatch:
   
   
 jobs:
