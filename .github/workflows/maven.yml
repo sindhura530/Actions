@@ -1,6 +1,6 @@
 name: Java CI With Maven
 
-on: workflow_dispatch
+on: push
 
 jobs:
   build:
@@ -23,6 +23,7 @@ jobs:
     - name: Package with maven
       run:  echo "mvn package"
     - run: |
+           mkdir artifact
            cd artifact
            echo ' hi ' > sindhu.html
            cd .. 
