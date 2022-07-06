@@ -101,7 +101,7 @@ jobs:
           delete-branch: true
           
   Deploy_Stage:
-    if: ${{ always() && github.event.ref == 'refs/heads/develop' }}
+    if: ${{ always() && github.event.ref == 'pull_request' && 'refs/heads/develop' }}
     needs: [Quality-Gates]
     runs-on: ubuntu-latest
     environment: 
