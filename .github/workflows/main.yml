@@ -65,7 +65,7 @@ jobs:
         run: echo 'ChangeRequest Validation "performed"'
     
   Deploy_Dev:
-    if: ${{ always() && github.event.ref == 'refs/heads/feature' }}
+    if: ${{ always() && github.event.ref == 'refs/heads/develop' && 'pull_request' }}
     needs: [Quality-Gates]
     runs-on: ubuntu-latest
     environment: 
