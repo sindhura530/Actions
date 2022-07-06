@@ -138,7 +138,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           delete-branch: true
           
-  Deploy_PROD:
+  Deploy_Prod:
     if: ${{ always() && github.event.ref == 'refs/heads/main' }}
     needs: [ChangeRequest_Validation]
     runs-on: ubuntu-latest
