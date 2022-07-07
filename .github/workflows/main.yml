@@ -120,6 +120,7 @@ jobs:
         name: pull-request from develop to main
         with:
           destination_branch: "main"
+          source_branch: develop
           pr_title: "auto PR from ${{ github.ref }} into main"
           pr_body: " Automated PR*"
           pr_reviewer: "sindhu"
