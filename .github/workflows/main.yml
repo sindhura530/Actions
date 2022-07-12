@@ -11,7 +11,7 @@ jobs:
   check_maven:
      needs: inputs
      if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java')"
-     uses: sindhura530/github-workflows/.github/workflows/maven.yml@main 
+     uses: sindhura530/github-workflows/.github/workflows/maven.yml@feature
      with:
        javaVersion: '11'
        nodeVersion: '14'
