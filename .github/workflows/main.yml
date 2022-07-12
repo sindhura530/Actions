@@ -1,7 +1,7 @@
 name: CI and CD pipeline
 on:
   push: 
-     branches: [main]
+     branches: [feature, develop, main]
   
   
 jobs:
