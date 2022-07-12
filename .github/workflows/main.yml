@@ -16,17 +16,17 @@ jobs:
        javaVersion: '11'
        nodeVersion: '14'
        
-  check_npm:
-    needs: inputs
-    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'node')" 
-    uses: sindhura530/github-workflows/.github/workflows/npm.yml@main
-    with:
-     nodeVersion: '10'
+  #check_npm:
+    #needs: inputs
+    #if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'node')" 
+    #uses: sindhura530/github-workflows/.github/workflows/npm.yml@main
+    #with:
+     #nodeVersion: '10'
        
 
   Code-Quality:
     if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
-    needs: [check_maven, check_npm]
+    needs: [check_maven]
     runs-on: ubuntu-latest
     container: 
       image: openjdk:11
