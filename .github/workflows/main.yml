@@ -131,7 +131,7 @@ jobs:
           destination_branch: "main"
           pr_title: "auto PR from ${{ github.ref }} into main"
           pr_body: " Automated PR*"
-          pr_reviewer: "sindhu"
+          #pr_reviewer: "sindhu"
           pr_draft: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
          
