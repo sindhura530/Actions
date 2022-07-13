@@ -10,11 +10,12 @@ jobs:
      
   check_maven:
      needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java')"
+     #if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java')"
      uses: sindhura530/github-workflows/.github/workflows/maven.yml@main
      with:
        javaVersion: '12'
        nodeVersion: '18'
+       
        
   #check_npm:
     #needs: inputs
@@ -35,12 +36,7 @@ jobs:
     steps:
        - uses: actions/checkout@v3
        - name: code Analysis
-         run: echo 'mvn sonar:sonar'
-       - name: Download artifacts
-         uses: actions/download-artifact@v2
-         with:
-           name: artifact2
-       
+         run: echo 'mvn sonar:sonar' 
            
           
   security-scan:
