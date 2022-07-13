@@ -29,7 +29,8 @@ jobs:
     needs: [check_maven]
     runs-on: ubuntu-latest
     container: 
-      image: openjdk:11
+      #image: openjdk12-node18:v1.0
+      image: openjdk:12
 
     steps:
        - uses: actions/checkout@v3
@@ -38,7 +39,8 @@ jobs:
        - name: Download artifacts
          uses: actions/download-artifact@v2
          with:
-           name: artifact1
+           name: artifact2
+       
            
           
   security-scan:
