@@ -10,7 +10,7 @@ jobs:
      
   check_maven:
      needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, '12')"
+     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 17)"
      uses: sindhura530/Actions/.github/workflows/java12-node18.yml@main
     
        
