@@ -13,15 +13,15 @@ jobs:
      if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 17) && contains(needs.inputs.outputs.nodeVersion, 14)"
      uses: sindhura530/Actions/.github/workflows/java17-node14.yml@main 
   
-  check_maven1:
-     needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 12) && contains(needs.inputs.outputs.nodeVersion, 18)"
-     uses: sindhura530/Actions/.github/workflows/java12-node18.yml@main 
+  #check_maven1:
+     #needs: inputs
+     #if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java') && contains(needs.inputs.outputs.javaVersion, 12) && contains(needs.inputs.outputs.nodeVersion, 18)"
+     #uses: sindhura530/Actions/.github/workflows/java12-node18.yml@main 
         
-  check_npm:
-    needs: inputs
-    if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'node') && contains(needs.inputs.outputs.nodeVersion, 12)" 
-    uses: sindhura530/Actions/.github/workflows/nodejs12.yml@main
+  #check_npm:
+    #needs: inputs
+    #if: "contains(needs.inputs.outputs.buildTool, 'npm') && contains(needs.inputs.outputs.language, 'node') && contains(needs.inputs.outputs.nodeVersion, 12)" 
+    #uses: sindhura530/Actions/.github/workflows/nodejs12.yml@main
     
        
 
