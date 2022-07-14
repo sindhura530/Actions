@@ -1,0 +1,27 @@
+name: pipelineConfig
+on:
+  workflow_call:
+      outputs:
+         pipelineType:
+            value: 'azureappservice'
+         language:
+            value: 'java'
+         javaVersion:
+            value: 17
+         nodeVersion:
+            value: 14
+         buildTool: 
+            value: 'maven'
+         appName: 
+            value: abc
+         NewJarFileName: 
+            value: 'app.jar'
+         TragetFileType: 
+            value: 'jar'
+jobs:
+  example_job:
+    name: Generate output
+    runs-on: ubuntu-latest
+    steps:
+      - name: printing
+        run: echo " print"
