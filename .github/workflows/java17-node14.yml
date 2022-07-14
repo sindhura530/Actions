@@ -1,0 +1,16 @@
+name: Java CI with Maven
+
+on: 
+  workflow_call:
+    
+jobs:
+
+  java17-node14:
+    runs-on: ubuntu-latest
+    container: 
+      #image: openjdk17-node14:v1.0
+      image: openjdk:17
+
+    steps:
+    - name: print
+      run: echo "openjdk17-node14:v1.0"
