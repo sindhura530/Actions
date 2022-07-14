@@ -9,7 +9,7 @@ on:
          javaVersion:
             value: 17
          nodeVersion:
-            value: 12
+            value: 14
          buildTool: 
             value: 'maven'
          appName: 
