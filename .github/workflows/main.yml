@@ -6,11 +6,11 @@ on:
   
 jobs:
   inputs:
-     uses: sindhura530/github-workflows/.github/workflows/pipelineConfig.yml@main
+     uses: sindhura530/Actions/.github/workflows/pipelineConfig.yml@main
      
   check_maven:
      needs: inputs
-     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java')  && contains(needs.inputs.outputs.javaVersion, '12') && contains(needs.inputs.outputs.nodeVersion, '18')"
+     if: "contains(needs.inputs.outputs.buildTool, 'maven') && contains(needs.inputs.outputs.language, 'java')"  # && contains(needs.inputs.outputs.javaVersion, '12') && contains(needs.inputs.outputs.nodeVersion, '18')"
      uses: sindhura530/Actions/.github/workflows/java12-node18.yml@main
     
        
