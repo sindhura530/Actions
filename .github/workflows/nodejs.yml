@@ -1,0 +1,15 @@
+name: nodeJS
+
+on: 
+  workflow_call:
+    
+jobs:
+
+  node12:
+    runs-on: ubuntu-latest
+    container: 
+      image: node:12
+
+    steps:
+    - name: print
+      run: echo "node12:v1.0"
