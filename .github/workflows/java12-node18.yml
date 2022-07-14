@@ -1,0 +1,16 @@
+name: Java and Node
+
+on: 
+  workflow_call:
+    
+jobs:
+
+  java17-node14:
+    runs-on: ubuntu-latest
+    container: 
+      #image: openjdk12-node18:v1.0
+      image: openjdk:12
+
+    steps:
+    - name: print
+      run: echo "openjdk12-node18:v1.0"
