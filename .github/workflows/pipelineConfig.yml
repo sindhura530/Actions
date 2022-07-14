@@ -8,8 +8,6 @@ on:
             value: 'java'
          javaVersion:
             value: 17
-         nodeVersion:
-            value: 14
          buildTool: 
             value: 'maven'
          appName: 
